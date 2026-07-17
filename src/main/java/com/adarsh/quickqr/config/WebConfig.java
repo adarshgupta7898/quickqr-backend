@@ -17,13 +17,17 @@ public class WebConfig {
         return new WebMvcConfigurer() {
 
             @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(true);
-            }
+public void addCorsMappings(CorsRegistry registry) {
+    registry.addMapping("/**")
+            .allowedOriginPatterns(
+                    "http://localhost:5173",
+                    "https://*.vercel.app",
+                    "https://quickqr-frontend.vercel.app"
+            )
+            .allowedMethods("*")
+            .allowedHeaders("*")
+            .allowCredentials(false);
+}
 
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
